@@ -28,6 +28,9 @@ class UserSerializer(serializers.Serializer):
         for key, value in validated_data.items():
             setattr(instance, key, value)
 
+            if key == "password":
+                instance.set_password(value)
+
         instance.save()
 
         return instance
